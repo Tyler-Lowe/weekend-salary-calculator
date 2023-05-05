@@ -4,11 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    
-
+    <div class="grid-container">
+        <h1>Salary Calculator</h1>
+        <h3>Add Employee</h3>
+        <div>
+            <form action="">
+                <input id="first-name" type="text" placeholder="First Name">
+                <input id="last-name" type="text" placeholder="Last Name">
+                <input id="employeeID" type="text" placeholder="Employee ID">
+                <input id="title" type="text" placeholder="Title">
+                <input id="annual-salary" type="text" placeholder="Annual Salary">
+                <input onclick="addToEmployeeTable(event)" type="submit" value="Submit">
+            </form>
+        </div>
+        <h3>Employees</h3>
+        <table id="employee-table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Annual Salary</th>
+                <th>Remove</th>
+            </tr>
+        </table>
+        <h3 id="indicator-limit">Total Monthly: <span id="monthly-costs"></span></h3>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

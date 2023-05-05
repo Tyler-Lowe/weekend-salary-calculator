@@ -1,0 +1,44 @@
+table, td, th {
+    border: 1px solid black;
+    padding: .5rem;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 0 auto;
+}
+
+tbody:nth-child(odd){
+    background-color: rgb(224, 224, 224);
+}
+
+th {
+    background-color: lightgray;
+}
+
+.over-limit{
+    background: rgb(224, 80, 80);
+    transition:  .5s ease-in;
+}
+
+.under-limit{
+    background: rgb(129, 253, 135);
+    transition:  .5s ease-in;
+}
+
+.no-color {
+    background: #fff;
+    transition:  1s ease-out;
+}
+
+.grid-container {
+    width: 95%;
+    margin: 0 auto;
+}
+
+#indicator-limit{
+    float: right;
+    padding-right: 10rem;
+    font-size: 1.5rem;
+}
