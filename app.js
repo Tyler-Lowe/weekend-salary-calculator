@@ -1,37 +1,5 @@
-let employee = [
-
-]
-let counter = 1;
+let employee = [];
 let totalAnnualSalary = 0;
-function newEmployee(arr) {
-
-
-for (const employee of arr) {
-    let rowAppend = document.querySelector(`#employee-table`);
-    rowAppend.innerHTML += 
-`
-<tr id="employee-row">
-<td>${employee.employeeFirstName}</td>
-<td>${employee.employeeLasttName}</td>
-<td>${employee.employeeID}</td>
-<td>${employee.employeeTitle}</td>
-<td id="deduction">${employee.employeeAnnualSalary}</td>
-<td><button onclick="removeRow(event)" id="remove">Remove</button>
-</tr>
-`
-
-totalAnnualSalary = totalAnnualSalary + Number(employee.employeeAnnualSalary);
-}
-totalAppend = document.querySelector('#monthly-costs');
-totalAppend.innerHTML = `${Number(totalAnnualSalary)}`
-if(Number(totalAnnualSalary) > 20000){
-    document.querySelector('#indicator-limit').className = "over-limit";
-}
-employee = [];
-    
-}
-
-
 
 function addToEmployeeTable(event) {
     event.preventDefault();
@@ -54,30 +22,61 @@ function addToEmployeeTable(event) {
     employeeID.value = ''
     employeeTitle.value = ''
     employeeAnnualSalary.value = ''
+
 }
 
+function newEmployee(arr) {
+
+    for (const employee of arr) {
+        let rowAppend = document.querySelector(`#employee-table`);
+        rowAppend.innerHTML += 
+        `
+        <tr id="employee-row">
+        <td>${employee.employeeFirstName}</td>
+        <td>${employee.employeeLasttName}</td>
+        <td>${employee.employeeID}</td>
+        <td>${employee.employeeTitle}</td>
+        <td class="deduction">$${employee.employeeAnnualSalary}</td>
+        <td><button onclick="removeRow(event)" id="remove">Remove</button>
+        </tr>
+        `
+        monthlyTotalCalculator(employee.employeeAnnualSalary)
+    }
+  
+    employee = [];
+
+}
+
+function monthlyTotalCalculator(employeeSalary) {
+    totalAnnualSalary = (totalAnnualSalary + employeeSalary);
+    monthlySalary = ((totalAnnualSalary / 12).toPrecision(4))
+    let totalAppend = document.querySelector('#monthly-costs');
+    totalAppend.innerHTML = `${Number(monthlySalary)}`
+
+    if(Number(monthlySalary) > 20000){
+        document.querySelector('#indicator-limit').className = "over-limit";
+    }
+
+}
 
 function removeRow(event){
-    let salaryDeduction = event.target.parentElement.parentElement.querySelector('#deduction').innerHTML
-    console.log(Number(salaryDeduction));
-    let currentTotal = document.querySelector('#monthly-costs').innerHTML;
-    totalAnnualSalary = Number(currentTotal) - Number(salaryDeduction)
+    event.target.parentElement.parentElement.remove();
+    let allCells = document.querySelector('#employee-table').getElementsByClassName('deduction');
+    console.log(allCells, 'typeof');
+    let cellArray = [];
+    let adjustedMonthlyTotal = 0;
 
-    totalAppend = document.querySelector('#monthly-costs');
-    totalAppend.innerHTML = `${Number(totalAnnualSalary)}`
-
-    if(Number(totalAnnualSalary) > 20000){
-        document.querySelector('#indicator-limit').className = "over-limit";
-    } else {
-        document.querySelector('#indicator-limit').className = "under-limit";
-        setTimeout(() => {
-            document.querySelector('#indicator-limit').className = "no-color";
-        }
-        ,1000);
+    for (const element of allCells) {
+        cellArray.push(Number(element.textContent.replace('$', '')));
+        adjustedMonthlyTotal += Number(element.textContent.replace('$', ''));
     }
-    
 
-    console.log(currentTotal);
-    console.log(event.target.parentElement.parentElement.remove());
-    // console.log(event.target.parentElement.parentElement.querySelector('#deduction').innerHTML);
+     let adjustedMonthlyTotalAppend = document.querySelector('#monthly-costs');
+     adjustedMonthlyTotalAppend.innerHTML = `$${(Math.floor(Number(adjustedMonthlyTotal / 12)))}`
+     totalAnnualSalary = adjustedMonthlyTotal;
+
+     if(Number(adjustedMonthlyTotal / 12) < 20000) {
+        document.querySelector('#indicator-limit').className = "no-color";
+     }
+
 }
