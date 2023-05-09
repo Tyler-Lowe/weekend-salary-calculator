@@ -83,5 +83,5 @@ function removeRow(event){
      if(Number(adjustedMonthlyTotal / 12) < 20000) {
         document.querySelector('#indicator-limit').className = "no-color";
      }
-
+ 
 }

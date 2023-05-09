@@ -13,7 +13,6 @@ None
 
 ## Installation
 
-
 1. Fork the current repo,
 2. and clone it using "git clone https://example.com/example"
 
