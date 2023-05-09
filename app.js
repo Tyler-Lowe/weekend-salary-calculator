@@ -29,6 +29,7 @@ function addToEmployeeTable(event) {
 
 }
 
+// function takes an array and loops through it adding each variable to the dom
 function newEmployee(arr) {
 
     for (const employee of arr) {
@@ -53,9 +54,9 @@ function newEmployee(arr) {
 
 function monthlyTotalCalculator(employeeSalary) {
     totalAnnualSalary = (totalAnnualSalary + employeeSalary);
-    monthlySalary = ((totalAnnualSalary / 12).toPrecision(4))
+    monthlySalary = ((totalAnnualSalary / 12))
     let totalAppend = document.querySelector('#monthly-costs');
-    totalAppend.innerHTML = `${Number(monthlySalary)}`
+    totalAppend.innerHTML = `${Number(monthlySalary).toFixed(2)}`
 
     if(Number(monthlySalary) > 20000){
         document.querySelector('#indicator-limit').className = "over-limit";
@@ -76,7 +77,7 @@ function removeRow(event){
     }
 
      let adjustedMonthlyTotalAppend = document.querySelector('#monthly-costs');
-     adjustedMonthlyTotalAppend.innerHTML = `$${(Math.floor(Number(adjustedMonthlyTotal / 12)))}`
+     adjustedMonthlyTotalAppend.innerHTML = `$${(Number(adjustedMonthlyTotal / 12).toFixed(2))}`
      totalAnnualSalary = adjustedMonthlyTotal;
 
      if(Number(adjustedMonthlyTotal / 12) < 20000) {
