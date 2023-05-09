@@ -3,14 +3,18 @@ let totalAnnualSalary = 0;
 
 function addToEmployeeTable(event) {
     event.preventDefault();
+
     let employeeFirstName = document.querySelector('#first-name').value;
     let employeeLasttName = document.querySelector('#last-name').value;
     let employeeID = document.querySelector('#employeeID').value;
     let employeeTitle = document.querySelector('#title').value;
     let employeeAnnualSalary = Number(document.querySelector('#annual-salary').value);
+
     employee.push({employeeFirstName, employeeLasttName, employeeID, employeeTitle, employeeAnnualSalary});
     // call function pass in employee array
+
     newEmployee(employee)
+    
     // After values are pushed to array and the function called clear input values
     employeeFirstName = document.querySelector('#first-name')
     employeeLasttName = document.querySelector('#last-name');
